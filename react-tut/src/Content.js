@@ -1,31 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react';
+import Itemslist from './Itemslist';
 
-const Content = () => {
-  const [name, setName]= useState("Earn");
-  function handleNameChange() {
-    const names= ["Earn", "Give","Grow"];
-    const int = Math.floor(Math.random()*3);
-    setName (names[int]);
-  }
- 
- const [count , setCount]= useState(100);
- 
- function incrementFunction(){
-  setCount (prevCount=> prevCount+1);
- }
-
- function decrementFunction(){
-  setCount(prevCount=>prevCount-1);
- }
+const Content = ({ items, handleCheck, handleDelete }) => {
   return (
-    <main className='App'> 
-      <p> lets {name} money</p>
-    <button onClick={handleNameChange}> susbsrcibe</button>
-    <button onClick={decrementFunction}> - </button>
-    <span >{count}</span>
-    <button onClick={incrementFunction}> + </button>
- 
-   </main>
-  )
-}
-export default Content
+    <main>
+      {items.length ? (
+       <Itemslist
+          items={items}
+          handleCheck={handleCheck}
+          handleDelete={handleDelete}
+        />
+      ) : (
+        <p>your list is empty</p>
+      )}
+    </main>
+  );
+};
+
+export default Content;
